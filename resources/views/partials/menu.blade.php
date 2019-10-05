@@ -1,19 +1,20 @@
 <aside class="main-sidebar">
-    <section class="sidebar" style="height: auto;">
+    <section class="sidebar" style="height: auto; ">
         <ul class="sidebar-menu tree" data-widget="tree">
+            <h3></h3>
+
             <li>
                 <a href="{{ route("admin.home") }}">
                     <i class="fas fa-fw fa-tachometer-alt">
 
                     </i>
-                    {{ trans('global.dashboard') }}
+                    {{ trans('global.dashboard')}}
                 </a>
             </li>
             @can('user_management_access')
                 <li class="treeview">
                     <a href="#">
                         <i class="fa-fw fas fa-users">
-
                         </i>
                         <span>{{ trans('cruds.userManagement.title') }}</span>
                         <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
@@ -204,6 +205,32 @@
                     </ul>
                 </li>
             @endcan
+
+            @can('notice_management_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-money-bill">
+
+                        </i>
+                        <span>{{ trans('cruds.noticeManagement.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('notice_access')
+                            <li class="{{ request()->is('admin/notice') || request()->is('admin/notice/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.notice.index") }}">
+                                    <i class="fa-fw fas fa-list">
+
+                                    </i>
+                                    <span>{{ trans('cruds.notice.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+
+
             @can('accouns_management_access')
                 <li class="treeview">
                     <a href="#">
@@ -290,6 +317,31 @@
                     </ul>
                 </li>
             @endcan
+
+{{--            @can('notice_management_access')--}}
+{{--                <li class="treeview">--}}
+{{--                    <a href="#">--}}
+{{--                        <i class="fa-fw fas fa-money-bill">--}}
+
+{{--                        </i>--}}
+{{--                        <span>{{ trans('cruds.noticeManagement.title') }}</span>--}}
+{{--                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>--}}
+{{--                    </a>--}}
+{{--                    <ul class="treeview-menu">--}}
+{{--                        @can('notice_category_access')--}}
+{{--                            <li class="{{ request()->is('admin/notice-categories') || request()->is('admin/notice-categories/*') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ route("admin.notice.index") }}">--}}
+{{--                                    <i class="fa-fw fas fa-list">--}}
+
+{{--                                    </i>--}}
+{{--                                    <span>{{ trans('cruds.notice.title') }}</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endcan--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
+
             @php($unread = \App\QaTopic::unreadCount())
                 <li class="{{ request()->is('admin/messenger') || request()->is('admin/messenger/*') ? 'active' : '' }}">
                     <a href="{{ route("admin.messenger.index") }}">

@@ -3,7 +3,7 @@
 <div class="content">
     <div class="row">
         <div class="col-lg-12">
-            Home
+            Welcome to Home Page
         </div>
     </div>
 </div>

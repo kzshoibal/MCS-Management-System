@@ -7,8 +7,10 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\ProjectStatus;
 use App\Role;
 use App\User;
+use App\UserStatus;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,17 +34,20 @@ class UsersController extends Controller
 
         $roles = Role::all()->pluck('title', 'id');
 
+//        $user_statuses = UserStatus::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         return view('admin.users.create', compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
+
         $user->roles()->sync($request->input('roles', []));
 
-        if ($request->input('image', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+//        if ($request->input('image', false)) {
+//            $user->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+//        }
 
         return redirect()->route('admin.users.index');
     }

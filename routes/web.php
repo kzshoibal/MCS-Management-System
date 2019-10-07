@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('roles', 'RolesController');
 
     // Users
+
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
     Route::resource('users', 'UsersController');
@@ -23,6 +24,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     // Myprofileinformations
+//    Route::get('my-profile-informations/changePassword','MyProfileInformationController@showChangePasswordForm');
     Route::resource('my-profile-informations', 'MyProfileInformationController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
     // Updateprofileinformations
@@ -30,6 +32,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Changepasswords
     Route::resource('change-passwords', 'ChangePasswordController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+//    Route::resource('change-passwords', 'ChangePasswordController');
+//    Route::get('change-passwords', 'ChangePasswordController@showChangePasswordForm');
+//    oute::post('change-passwords', 'ChangePasswordController@changePassword');
+
+//    Route::get('/change-password','ChangePasswordController@showChangePasswordForm');
+    Route::post('/change-password','ChangePasswordController@changePassword')->name('change-password');
+
 
     // Enrolemonthlydeposits
     Route::resource('enrole-monthly-deposits', 'EnroleMonthlyDepositController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -78,6 +87,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('expense-reports', 'ExpenseReportController');
 
     //Notices
+    Route::delete('notice/destroy', 'NoticeController@massDestroy')->name('notices.massDestroy');
+//    Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
     Route::resource('notice','NoticeController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

@@ -21,7 +21,7 @@ class UpdateUserStatusRequest extends FormRequest
         return [
             'title' => [
                 'required',
-                'unique:user_statuses,title,' . request()->route('user_status')->id,
+                'unique',
             ],
         ];
     }

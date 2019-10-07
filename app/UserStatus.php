@@ -25,8 +25,8 @@ class UserStatus extends Model
         'deleted_at',
     ];
 
-    public function users()
-    {
-        return $this->hasMany(User::class, 'user_status_id', 'id');
-    }
+//    public function users()
+//    {
+//        return $this->hasMany(User::class, 'user_status_id', 'id');
+//    }
 }

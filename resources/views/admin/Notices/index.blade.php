@@ -20,7 +20,7 @@
                     <div class="panel-body">
 
                         <div class="table-responsive">
-                            <table class=" table table-bordered table-striped table-hover datatable datatable-Project">
+                            <table class=" table table-bordered table-striped table-hover datatable datatable-Notice">
                                 <thead>
                                 <tr>
                                     <th width="10">
@@ -35,6 +35,15 @@
                                     <th>
                                         {{ trans('cruds.notice.fields.description') }}
                                     </th>
+
+                                    <th>
+                                        {{ "Created By" }}
+                                    </th>
+
+                                    <th>
+                                        {{ "Status" }}
+                                    </th>
+
                                     <th>
                                         {{trans('global.actions')}}
                                     </th>
@@ -54,6 +63,12 @@
                                         </td>
                                         <td>
                                             {{ $notice->description ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ 'Admin' }}
+                                        </td>
+                                        <td>
+                                            {{ ''}}
                                         </td>
                                         <td>
                                             @can('notice_show')
@@ -98,11 +113,12 @@
     <script>
         $(function () {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-                @can('project_delete')
+                @can('notice_delete')
             let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
             let deleteButton = {
                 text: deleteButtonTrans,
-                url: "{{ route('admin.projects.massDestroy') }}",
+{{--                url: "{{ route('admin.projects.massDestroy') }}",--}}
+                url: "{{ route('admin.notices.massDestroy') }}",
                 className: 'btn-danger',
                 action: function (e, dt, node, config) {
                     var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -132,7 +148,7 @@
                 order: [[ 1, 'desc' ]],
                 pageLength: 100,
             });
-            $('.datatable-Project:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+            $('.datatable-Notice:not(.ajaxTable)').DataTable({ buttons: dtButtons })
             $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
                 $($.fn.dataTable.tables(true)).DataTable()
                     .columns.adjust();
@@ -140,4 +156,5 @@
         })
 
     </script>
+
 @endsection

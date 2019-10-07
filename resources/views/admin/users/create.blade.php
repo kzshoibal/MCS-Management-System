@@ -67,71 +67,71 @@
                                 {{ trans('cruds.user.fields.roles_helper') }}
                             </p>
                         </div>
-                        <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-                            <label for="image">{{ trans('cruds.user.fields.image') }}</label>
-                            <div class="needsclick dropzone" id="image-dropzone">
+{{--                        <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">--}}
+{{--                            <label for="image">{{ trans('cruds.user.fields.image') }}</label>--}}
+{{--                            <div class="needsclick dropzone" id="image-dropzone">--}}
 
-                            </div>
-                            @if($errors->has('image'))
-                                <p class="help-block">
-                                    {{ $errors->first('image') }}
-                                </p>
-                            @endif
-                            <p class="helper-block">
-                                {{ trans('cruds.user.fields.image_helper') }}
-                            </p>
-                        </div>
-                        <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
-                            <label>{{ trans('cruds.user.fields.gender') }}</label>
-                            @foreach(App\User::GENDER_RADIO as $key => $label)
-                                <div>
-                                    <input id="gender_{{ $key }}" name="gender" type="radio" value="{{ $key }}" {{ old('gender', null) === (string)$key ? 'checked' : '' }}>
-                                    <label for="gender_{{ $key }}">{{ $label }}</label>
-                                </div>
-                            @endforeach
-                            @if($errors->has('gender'))
-                                <p class="help-block">
-                                    {{ $errors->first('gender') }}
-                                </p>
-                            @endif
-                        </div>
-                        <div class="form-group {{ $errors->has('about') ? 'has-error' : '' }}">
-                            <label for="about">{{ trans('cruds.user.fields.about') }}</label>
-                            <textarea id="about" name="about" class="form-control ckeditor">{{ old('about', isset($user) ? $user->about : '') }}</textarea>
-                            @if($errors->has('about'))
-                                <p class="help-block">
-                                    {{ $errors->first('about') }}
-                                </p>
-                            @endif
-                            <p class="helper-block">
-                                {{ trans('cruds.user.fields.about_helper') }}
-                            </p>
-                        </div>
-                        <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
-                            <label for="address">{{ trans('cruds.user.fields.address') }}</label>
-                            <textarea id="address" name="address" class="form-control ">{{ old('address', isset($user) ? $user->address : '') }}</textarea>
-                            @if($errors->has('address'))
-                                <p class="help-block">
-                                    {{ $errors->first('address') }}
-                                </p>
-                            @endif
-                            <p class="helper-block">
-                                {{ trans('cruds.user.fields.address_helper') }}
-                            </p>
-                        </div>
-                        <div class="form-group {{ $errors->has('user_status_id') ? 'has-error' : '' }}">
-                            <label for="user_status">{{ trans('cruds.user.fields.user_status') }}*</label>
-                            <select name="user_status_id" id="user_status" class="form-control select2" required>
-                                @foreach($user_statuses as $id => $user_status)
-                                    <option value="{{ $id }}" {{ (isset($user) && $user->user_status ? $user->user_status->id : old('user_status_id')) == $id ? 'selected' : '' }}>{{ $user_status }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('user_status_id'))
-                                <p class="help-block">
-                                    {{ $errors->first('user_status_id') }}
-                                </p>
-                            @endif
-                        </div>
+{{--                            </div>--}}
+{{--                            @if($errors->has('image'))--}}
+{{--                                <p class="help-block">--}}
+{{--                                    {{ $errors->first('image') }}--}}
+{{--                                </p>--}}
+{{--                            @endif--}}
+{{--                            <p class="helper-block">--}}
+{{--                                {{ trans('cruds.user.fields.image_helper') }}--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">--}}
+{{--                            <label>{{ trans('cruds.user.fields.gender') }}</label>--}}
+{{--                            @foreach(App\User::GENDER_RADIO as $key => $label)--}}
+{{--                                <div>--}}
+{{--                                    <input id="gender_{{ $key }}" name="gender" type="radio" value="{{ $key }}" {{ old('gender', null) === (string)$key ? 'checked' : '' }}>--}}
+{{--                                    <label for="gender_{{ $key }}">{{ $label }}</label>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                            @if($errors->has('gender'))--}}
+{{--                                <p class="help-block">--}}
+{{--                                    {{ $errors->first('gender') }}--}}
+{{--                                </p>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group {{ $errors->has('about') ? 'has-error' : '' }}">--}}
+{{--                            <label for="about">{{ trans('cruds.user.fields.about') }}</label>--}}
+{{--                            <textarea id="about" name="about" class="form-control ckeditor">{{ old('about', isset($user) ? $user->about : '') }}</textarea>--}}
+{{--                            @if($errors->has('about'))--}}
+{{--                                <p class="help-block">--}}
+{{--                                    {{ $errors->first('about') }}--}}
+{{--                                </p>--}}
+{{--                            @endif--}}
+{{--                            <p class="helper-block">--}}
+{{--                                {{ trans('cruds.user.fields.about_helper') }}--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">--}}
+{{--                            <label for="address">{{ trans('cruds.user.fields.address') }}</label>--}}
+{{--                            <textarea id="address" name="address" class="form-control ">{{ old('address', isset($user) ? $user->address : '') }}</textarea>--}}
+{{--                            @if($errors->has('address'))--}}
+{{--                                <p class="help-block">--}}
+{{--                                    {{ $errors->first('address') }}--}}
+{{--                                </p>--}}
+{{--                            @endif--}}
+{{--                            <p class="helper-block">--}}
+{{--                                {{ trans('cruds.user.fields.address_helper') }}--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group {{ $errors->has('user_status_id') ? 'has-error' : '' }}">--}}
+{{--                            <label for="user_status">{{ trans('cruds.user.fields.user_status') }}*</label>--}}
+{{--                            <select name="user_status_id" id="user_status" class="form-control select2" required>--}}
+{{--                                @foreach($user_statuses as $id => $user_status)--}}
+{{--                                    <option value="{{ $id }}" {{ (isset($user) && $user->user_status ? $user->user_status->id : old('user_status_id')) == $id ? 'selected' : '' }}>{{ $user_status }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                            @if($errors->has('user_status_id'))--}}
+{{--                                <p class="help-block">--}}
+{{--                                    {{ $errors->first('user_status_id') }}--}}
+{{--                                </p>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
                         <div>
                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                         </div>

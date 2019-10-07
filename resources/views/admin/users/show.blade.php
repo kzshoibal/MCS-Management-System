@@ -38,14 +38,14 @@
                                         {{ $user->email }}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.user.fields.email_verified_at') }}
-                                    </th>
-                                    <td>
-                                        {{ $user->email_verified_at }}
-                                    </td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                        {{ trans('cruds.user.fields.email_verified_at') }}--}}
+{{--                                    </th>--}}
+{{--                                    <td>--}}
+{{--                                        {{ $user->email_verified_at }}--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
                                 <tr>
                                     <th>
                                         Roles
@@ -56,49 +56,59 @@
                                         @endforeach
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.user.fields.image') }}
-                                    </th>
-                                    <td>
-                                        @if($user->image)
-                                            <a href="{{ $user->image->getUrl() }}" target="_blank">
-                                                <img src="{{ $user->image->getUrl('thumb') }}" width="50px" height="50px">
-                                            </a>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.user.fields.gender') }}
-                                    </th>
-                                    <td>
-                                        {{ App\User::GENDER_RADIO[$user->gender] }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.user.fields.about') }}
-                                    </th>
-                                    <td>
-                                        {!! $user->about !!}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.user.fields.address') }}
-                                    </th>
-                                    <td>
-                                        {!! $user->address !!}
-                                    </td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                        {{ trans('cruds.user.fields.image') }}--}}
+{{--                                    </th>--}}
+{{--                                    <td>--}}
+{{--                                        @if($user->image)--}}
+{{--                                            <a href="{{ $user->image->getUrl() }}" target="_blank">--}}
+{{--                                                <img src="{{ $user->image->getUrl('thumb') }}" width="50px" height="50px">--}}
+{{--                                            </a>--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                        {{ trans('cruds.user.fields.gender') }}--}}
+{{--                                    </th>--}}
+{{--                                    <td>--}}
+{{--                                        {{ App\User::GENDER_RADIO[$user->gender] }}--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                        {{ trans('cruds.user.fields.about') }}--}}
+{{--                                    </th>--}}
+{{--                                    <td>--}}
+{{--                                        {!! $user->about !!}--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                        {{ trans('cruds.user.fields.address') }}--}}
+{{--                                    </th>--}}
+{{--                                    <td>--}}
+{{--                                        {!! $user->address !!}--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
                                 <tr>
                                     <th>
                                         {{ trans('cruds.user.fields.user_status') }}
                                     </th>
                                     <td>
-                                        {{ $user->user_status->title ?? '' }}
+{{--                                        {{ $user->user_status->title ?? '' }}--}}
+                                        @if($user->status == true)
+                                            <p class="helper-block">
+                                                {{ "Active" }}
+                                            </p>
+                                        @else
+                                            <p class="helper-block">
+                                                {{ "Inactive" }}
+                                            </p>{{""}}
+                                        @endif
                                     </td>
+
                                 </tr>
                             </tbody>
                         </table>

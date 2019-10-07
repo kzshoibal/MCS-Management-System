@@ -17,6 +17,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Projects
     Route::apiResource('projects', 'ProjectsApiController');
 
+    // Notice
+    Route::apiResource('notices','NoticeApiController');
+
     // Bankaccounts
     Route::apiResource('bank-accounts', 'BankAccountsApiController');
 
@@ -39,5 +42,5 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('incomes', 'IncomeApiController');
 
     // Expensereports
-    Route::apiResource('expense-reports', 'ExpenseReportApiController');
+//    Route::apiResource('expense-reports', 'ExpenseReportApiController');
 });

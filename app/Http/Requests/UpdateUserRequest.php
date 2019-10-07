@@ -32,9 +32,9 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'array',
             ],
-            'user_status' => [
-                'required',
-            ],
+//            'user_status' => [
+//                'required',
+//            ],
         ];
     }
 }

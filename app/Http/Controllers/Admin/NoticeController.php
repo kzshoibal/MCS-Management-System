@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyNoticeRequest;
 use App\Http\Requests\UpdateNoticeRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoticeRequest;
@@ -69,9 +70,13 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Notice $notice)
     {
-        //
+        abort_if(Gate::denies('notice_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+//        $project->load('users', 'status', 'bank_account');
+
+        return view('admin.notices.show', compact('notice'));
     }
 
     /**
@@ -114,5 +119,13 @@ class NoticeController extends Controller
         $notice->delete();
 
         return back();
+    }
+
+    public function massDestroy(MassDestroyNoticeRequest $request)
+    {
+
+//        dd($request->all());
+        Notice::whereIn('id',request('ids'))->delete();
+        return response(null,Response::HTTP_NO_CONTENT);
     }
 }

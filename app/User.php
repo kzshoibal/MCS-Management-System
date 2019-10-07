@@ -35,6 +35,11 @@ class User extends Authenticatable implements HasMedia
         '2' => 'Female',
     ];
 
+    const STATUS_RADIO = [
+        '0' => 'Inactive',
+        '1' => 'Active',
+    ];
+
     protected $dates = [
         'updated_at',
         'created_at',
@@ -45,16 +50,17 @@ class User extends Authenticatable implements HasMedia
     protected $fillable = [
         'name',
         'email',
-        'about',
-        'gender',
-        'address',
         'password',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
         'remember_token',
-        'user_status_id',
         'email_verified_at',
+    ];
+
+    protected $attributes = [
+        'status' => true,
     ];
 
     public function registerMediaConversions(Media $media = null)
@@ -111,8 +117,8 @@ class User extends Authenticatable implements HasMedia
         return $file;
     }
 
-    public function user_status()
-    {
-        return $this->belongsTo(UserStatus::class, 'user_status_id');
-    }
+//    public function user_status()
+//    {
+//        return $this->belongsTo(UserStatus::class, 'user_status_id');
+//    }
 }

@@ -15,7 +15,7 @@
             <div>
                 <input name="token" value="{{ $token }}" type="hidden">
                 <div class="form-group has-feedback">
-                    <input type="email" name="email" class="form-control" required placeholder="{{ trans('global.login_email') }}">
+                    <input type="email" name="email" class="form-control" >
                     @if($errors->has('email'))
                         <p class="help-block">
                             {{ $errors->first('email') }}

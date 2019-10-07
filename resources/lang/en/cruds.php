@@ -171,6 +171,8 @@ return [
             'description_helper' => 'Notice Description',
             'contents'           => 'Contents',
             'contents_helper'    => 'Notice Contents',
+            'status' => 'Status',
+            'status_helper' => 'Notice Status',
             'created_at'         => 'Created at',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated at',

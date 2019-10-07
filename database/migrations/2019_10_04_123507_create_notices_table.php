@@ -22,7 +22,7 @@ class CreateNoticesTable extends Migration
 
             $table->longText('contents');
 
-            $table->bigIncrements('author_id');
+//            $table->bigIncrements('author_id');
 
             $table->timestamps();
 

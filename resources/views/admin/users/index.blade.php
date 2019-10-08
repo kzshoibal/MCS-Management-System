@@ -97,13 +97,36 @@
 {{--                                        <td>--}}
 {{--                                            {{ $user->address ?? '' }}--}}
 {{--                                        </td>--}}
-                                        <td>
-                                            @if($user->status == true)
-                                                {{ "Active" }}
-                                            @else {{"Inactive"}}
-                                            @endif
+{{--                                        <td>--}}
+{{--                                            @if($user->status == true)--}}
+{{--                                                {{ "Active" }}--}}
+{{--                                            @else {{"Inactive"}}--}}
+{{--                                            @endif--}}
 
+{{--                                        </td>--}}
+                                        <td>
+                                            @if($user->status==1)
+                                                <b style="color:green"> Enable</b>
+                                            @else
+                                                <b style="color:red">  Disabled</b>
+                                            @endif
+                                            @can('update_user_status')
+                                                    <br>
+                                                    <button id="showSelectDiv{{$user->id}}"
+                                                            class="bbtn btn-dark">
+                                                        Change status
+                                                    </button>
+                                                    <div class="btn btn-xs" id="selectDiv{{$user->id}}">
+                                                        <input type="hidden" id="userID{{$user->id}}" value="{{$user->id}}">
+                                                        <select class="bootstrap-select" id="loginStatus{{$user->id}}">
+                                                            <option value="" selected >select a option</option>
+                                                            <option value="1">Enable</option>
+                                                            <option value="0">Disabled</option>
+                                                        </select>
+                                                    </div>
+                                            @endcan
                                         </td>
+
                                         <td>
                                             @can('user_show')
                                                 <a class="btn btn-xs btn-primary"
@@ -150,6 +173,7 @@
 @section('scripts')
     @parent
     <script>
+
         $(function () {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
                 @can('user_delete')
@@ -195,6 +219,40 @@
                     .columns.adjust();
             });
         })
+
+        $(document).ready(function(){
+
+            @foreach($users as $user)
+            $("#selectDiv{{$user->id}}").hide();
+            $("#showSelectDiv{{$user->id}}").click(function(){
+                $("#selectDiv{{$user->id}}").show();
+            });
+            $("#loginStatus{{$user->id}}").change(function(){
+                var status = $("#loginStatus{{$user->id}}").val();
+                var userID = $("#userID{{$user->id}}").val();
+                // alert("user Id" + userID + "Status " + status);
+                if(status==""){
+                    alert("please select an option");
+                }else{
+                    // alert("please select");
+                    $.ajax({
+                        headers: {'x-csrf-token': _token},
+                        url: '{{ route("admin.users.banUser")}}',
+                        {{--url: '{{url("/admin/users/banUser")}}',--}}
+                        data: 'status=' + status + '&userID=' + userID,
+                        type: 'get',
+                        success:function(response){
+                            console.log(response);
+                        }
+                    })
+                        .done(function () {
+                            location.reload()
+                        })
+                }
+
+            });
+            @endforeach
+        });
 
     </script>
 @endsection

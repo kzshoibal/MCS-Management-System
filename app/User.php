@@ -35,7 +35,7 @@ class User extends Authenticatable implements HasMedia
         '2' => 'Female',
     ];
 
-    const STATUS_RADIO = [
+    const STATUS = [
         '0' => 'Inactive',
         '1' => 'Active',
     ];

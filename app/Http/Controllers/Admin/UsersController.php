@@ -14,6 +14,7 @@ use App\UserStatus;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -102,5 +103,22 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function banUser(Request $request){
+
+        abort_if(Gate::denies('update_user_status'),Response::HTTP_FORBIDDEN,'403 Forbidden');
+
+        $status = $request->status;
+        $userID = $request->userID;
+
+        $update_status = DB::table('users')
+            ->where('id', $userID)
+            ->update([
+                'status' => $status
+            ]);
+        if($update_status){
+            echo "status updated successfully";
+        }
     }
 }

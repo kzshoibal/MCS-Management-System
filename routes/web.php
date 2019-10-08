@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::get('users/banUser', 'UsersController@banUser')->name('users.banUser');
     Route::resource('users', 'UsersController');
 
     // Auditlogs

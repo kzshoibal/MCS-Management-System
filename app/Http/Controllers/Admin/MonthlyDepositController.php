@@ -60,7 +60,8 @@ class MonthlyDepositController extends Controller
             $image = $request->file('deposit_image');
             $filename = time(). '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(512,512)->save(public_path('/upload/monthlyDepositImage/'.$filename));
-            $imageData = asset('/upload/monthlyDepositImage/'.$filename);
+//            $imageData = asset('/upload/monthlyDepositImage/'.$filename);
+            $imageData = '/upload/monthlyDepositImage/'.$filename;
         }
 
         $monthlyDeposit = MonthlyDeposit::create([

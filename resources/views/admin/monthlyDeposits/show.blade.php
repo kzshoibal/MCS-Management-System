@@ -186,8 +186,8 @@
                     <div class="box-body">
 
                         @if($depositDetail->deposit_image)
-                            <a href="{{ $depositDetail->deposit_image }}" target="_blank">
-                                <img src="{{ $depositDetail->deposit_image}}" width="500px" height="500px">
+                            <a href="{{ asset($depositDetail->deposit_image) }}" target="_blank">
+                                <img src="{{ asset($depositDetail->deposit_image)}}" width="500px" height="500px">
                             </a>
                         @endif
                         <hr>

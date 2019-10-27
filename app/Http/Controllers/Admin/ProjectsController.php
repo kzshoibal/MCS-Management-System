@@ -40,6 +40,7 @@ class ProjectsController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
+//        dd($request->all());
         $project = Project::create($request->all());
         $project->users()->sync($request->input('users', []));
 

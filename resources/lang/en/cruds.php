@@ -119,10 +119,16 @@ return [
         'title'          => 'Financial Contribution',
         'title_singular' => 'Financial Contribution',
     ],
-    'enroleMonthlyDeposit'     => [
-        'title'          => 'Enrole Monthly Deposit',
-        'title_singular' => 'Enrole Monthly Deposit',
+    'monthlyDeposit'     => [
+        'title'          => 'Monthly Deposit',
+        'title_singular' => 'Monthly Deposit',
     ],
+
+    'projectDeposit'     => [
+        'title'          => 'Deposit on Project',
+        'title_singular' => 'Deposit on Project',
+    ],
+
     'contributionHistory'      => [
         'title'          => 'Contribution History',
         'title_singular' => 'Contribution History',

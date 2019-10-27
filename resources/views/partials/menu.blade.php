@@ -1,5 +1,31 @@
 <aside class="main-sidebar">
     <section class="sidebar" style="height: auto; ">
+
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ asset(Auth::user()->profile->profile_image) }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{ Auth::user()->name}}</p>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+
+        <!-- search form (Optional) -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+
+        <!-- Sidebar Menu -->
         <ul class="sidebar-menu tree" data-widget="tree">
             <h3></h3>
 
@@ -75,7 +101,7 @@
                     <ul class="treeview-menu">
                         @can('my_profile_information_access')
                             <li class="{{ request()->is('admin/my-profile-informations') || request()->is('admin/my-profile-informations/*') ? 'active' : '' }}">
-                                <a href="{{ route("admin.my-profile-informations.index") }}">
+                                <a href="{{ route("admin.profile.index") }}">
                                     <i class="fa-fw far fa-user-circle">
 
                                     </i>
@@ -83,16 +109,16 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('update_profile_information_access')
-                            <li class="{{ request()->is('admin/update-profile-informations') || request()->is('admin/update-profile-informations/*') ? 'active' : '' }}">
-                                <a href="{{ route("admin.update-profile-informations.index") }}">
-                                    <i class="fa-fw fas fa-user-edit">
+{{--                        @can('update_profile_information_access')--}}
+{{--                            <li class="{{ request()->is('admin/update-profile-informations') || request()->is('admin/update-profile-informations/*') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ route("admin.update-profile-informations.index") }}">--}}
+{{--                                    <i class="fa-fw fas fa-user-edit">--}}
 
-                                    </i>
-                                    <span>{{ trans('cruds.updateProfileInformation.title') }}</span>
-                                </a>
-                            </li>
-                        @endcan
+{{--                                    </i>--}}
+{{--                                    <span>{{ trans('cruds.updateProfileInformation.title') }}</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endcan--}}
                         @can('change_password_access')
                             <li class="{{ request()->is('admin/change-passwords') || request()->is('admin/change-passwords/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.change-passwords.index") }}">
@@ -122,10 +148,20 @@
                                     <i class="fa-fw far fa-credit-card">
 
                                     </i>
-                                    <span>{{ trans('cruds.enroleMonthlyDeposit.title') }}</span>
+                                    <span>{{ trans('cruds.monthlyDeposit.title') }}</span>
                                 </a>
                             </li>
                         @endcan
+{{--                            @can('enrole_project_deposit_access')--}}
+{{--                                <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">--}}
+{{--                                    <a href="{{ route("admin.enrole-monthly-deposits.index") }}">--}}
+{{--                                        <i class="fa-fw far fa-credit-card">--}}
+
+{{--                                        </i>--}}
+{{--                                        <span>{{ trans('cruds.monthlyDeposit.title') }}</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endcan--}}
                         @can('contribution_history_access')
                             <li class="{{ request()->is('admin/contribution-histories') || request()->is('admin/contribution-histories/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.contribution-histories.index") }}">

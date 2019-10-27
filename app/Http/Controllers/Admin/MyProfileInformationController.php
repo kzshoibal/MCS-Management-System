@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Profile;
+use Illuminate\Support\Facades\Auth;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
 
 class MyProfileInformationController extends Controller
 {
@@ -18,7 +21,11 @@ class MyProfileInformationController extends Controller
     {
         abort_if(Gate::denies('my_profile_information_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.myProfileInformations.index');
+        $user = Auth::user();
+        $profile = Profile::find($user->id);
+        $id = Auth::user()->id;
+
+        return view('admin.myProfileInformations.index',compact('user','profile'));
     }
 
     public function showChangePasswordForm(){

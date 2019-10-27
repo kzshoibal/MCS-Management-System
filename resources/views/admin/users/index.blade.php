@@ -69,10 +69,10 @@
                                             {{ $user->id ?? '' }}
                                         </td>
                                         <td>
-                                            @if($user->image)
-                                                <a href="{{ $user->image->getUrl() }}" target="_blank">
-                                                    <img src="{{ $user->image->getUrl('thumb') }}" width="50px"
-                                                         height="50px">
+                                            @if($user->profile->profile_image)
+                                                <a href="{{ route('admin.profile.show', $user->profile->user_id) }}" target="_blank">
+                                                    <img src="{{ $user->profile->profile_image }}" width="60px"
+                                                         height="60px" style="border-radius: 50%;">
                                                 </a>
                                             @endif
                                         </td>

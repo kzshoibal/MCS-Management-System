@@ -24,60 +24,48 @@
     @yield('styles')
 </head>
 
-<body class="sidebar-mini skin-purple" style="height: auto; min-height: 100%;">
+<body class="sidebar-mini skin-blue hold-transition" style="height: auto; min-height: 100%;">
     <div class="wrapper" style="height: auto; min-height: 100%;">
-        <header class="main-header">
-            <a href="#" class="logo">
-                <span class="logo-mini"><b>{{ trans('panel.site_title') }}</b></span>
-                <span class="logo-lg">{{ trans('panel.site_title') }}</span>
-            </a>
 
-            <nav class="navbar navbar-static-top">
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">{{ trans('global.toggleNavigation') }}</span>
-                </a>
+{{--        Main Header--}}
+        @include('layouts.header')
 
-                @if(count(config('panel.available_languages', [])) > 1)
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    {{ strtoupper(app()->getLocale()) }}
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <ul class="menu">
-                                            @foreach(config('panel.available_languages') as $langLocale => $langName)
-                                                <li>
-                                                    <a href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
-
-
-            </nav>
-        </header>
-
+{{--        Left navigation bar--}}
         @include('partials.menu')
 
+
+
         <div class="content-wrapper" style="min-height: 960px;">
-            @if(session('message'))
+
+{{--            content pages sequences --}}
+            @yield('content-wrapper-header')
+
+{{--            Show error or success message--}}
+{{--            @if(session('message'))--}}
+{{--                <div class="row" style='padding:20px 20px 0 20px;'>--}}
+{{--                    <div class="col-lg-12">--}}
+{{--                        <div class="alert alert-success" role="alert">{{ session('message') }}</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+
+            @if ($message = Session::get('success'))
                 <div class="row" style='padding:20px 20px 0 20px;'>
                     <div class="col-lg-12">
-                        <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+                        <div class="alert alert-success" role="alert" id="id">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Well done! </strong>&nbsp; {{ $message }} !
+                        </div>
                     </div>
                 </div>
             @endif
+
             @if($errors->count() > 0)
                 <div class="row" style='padding:20px 20px 0 20px;'>
                     <div class="col-lg-12">
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger"role="alert" id="id">
                             <ul class="list-unstyled">
                                 @foreach($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -87,8 +75,12 @@
                     </div>
                 </div>
             @endif
+
+{{--            Content bodey--}}
             @yield('content')
         </div>
+
+{{--        Footer content--}}
         <footer class="main-footer text-center">
             <strong>{{ trans('panel.site_title') }} &copy;</strong> {{ trans('global.allRightsReserved') }}
         </footer>

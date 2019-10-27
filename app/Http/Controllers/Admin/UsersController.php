@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Profile;
 use App\ProjectStatus;
 use App\Role;
 use App\User;
@@ -43,6 +44,10 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
+        $profile = Profile::create([
+            'user_id' => $user->id,
+            'profile_image' => "/bower_components/AdminLTE/dist/img/avatar5.png"
+        ]);
 
         $user->roles()->sync($request->input('roles', []));
 
@@ -94,6 +99,7 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user->delete();
+        $user->profile->delete();
 
         return back();
     }

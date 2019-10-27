@@ -6,6 +6,7 @@ use App\Traits\Auditable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class BankAccount extends Model
 {
@@ -56,5 +57,11 @@ class BankAccount extends Model
     public function setAccountOpeningDateAttribute($value)
     {
         $this->attributes['account_opening_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public static function getBankAccountTitleFromId($id){
+        $accountTitle = DB::table('bank_accounts')->find('account_title')->where('id',$id)->get();
+//        $accountTitle = DB::table('bank_accounts')->where('id',$id)->get()->first();
+        return $accountTitle;
     }
 }

@@ -6,6 +6,12 @@ Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+//    Route::get('/test', 'HomeController@test')->name('hometest');
+
+    //    for test route
+//    Route::resource('test','TestController');
+
+
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -20,6 +26,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
     Route::get('users/banUser', 'UsersController@banUser')->name('users.banUser');
     Route::resource('users', 'UsersController');
+
+    //profile
+    Route::resource('profile', 'ProfileController');
+//    Route::resource('profile','ProfileController');
 
     // Auditlogs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
@@ -42,7 +52,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 
     // Enrolemonthlydeposits
-    Route::resource('enrole-monthly-deposits', 'EnroleMonthlyDepositController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('enrole-monthly-deposits', 'MonthlyDepositController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('monthly-deposits', 'MonthlyDepositController');
 
     // Contributionhistories
     Route::resource('contribution-histories', 'ContributionHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -92,6 +103,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 //    Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
     Route::resource('notice','NoticeController');
 
+
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -101,4 +114,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('messenger/{topic}', 'MessengerController@destroyTopic')->name('messenger.destroyTopic');
     Route::post('messenger/{topic}/reply', 'MessengerController@replyToTopic')->name('messenger.reply');
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
+
+
 });

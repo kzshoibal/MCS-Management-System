@@ -117,6 +117,11 @@ class User extends Authenticatable implements HasMedia
         return $file;
     }
 
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
+
 //    public function user_status()
 //    {
 //        return $this->belongsTo(UserStatus::class, 'user_status_id');

@@ -500,12 +500,12 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2019-10-03 05:40:34',
                 'updated_at' => '2019-10-03 05:40:34',
             ],
-            [
-                'id'         => '83',
-                'title'      => 'notice_management_access',
-                'created_at' => '2019-10-03 05:40:34',
-                'updated_at' => '2019-10-03 05:40:34',
-            ],
+//            [
+//                'id'         => '83',
+//                'title'      => 'notice_management_access',
+//                'created_at' => '2019-10-03 05:40:34',
+//                'updated_at' => '2019-10-03 05:40:34',
+//            ],
             [
                 'id'         => '84',
                 'title'      => 'notice_create',

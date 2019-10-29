@@ -66,9 +66,11 @@ class BankAccountsController extends Controller
 
     public function show(BankAccount $bankAccount)
     {
+//        dd($bankAccount->id);
         abort_if(Gate::denies('bank_account_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $bankAccount->load('account_type', 'users');
+        dd($bankAccount->account_type());
 
         return view('admin.bankAccounts.show', compact('bankAccount'));
     }

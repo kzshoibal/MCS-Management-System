@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BankAccount;
+use App\MonthlyDeposit;
 use App\Http\Controllers\Controller;
 use App\Project;
+use App\User;
 use Gate;
 use Image;
 use Intervention\Image\File;
@@ -12,7 +14,6 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\MonthlyDeposit;
 use App\Http\Requests\StoreMonthlyDepositRequest;
 
 class MonthlyDepositController extends Controller
@@ -23,8 +24,10 @@ class MonthlyDepositController extends Controller
 
         //get the Auth user
         $user = Auth::user();
+
         // Find the users monthly deposit.
-        $deposits = DB::table('monthly_deposits')->where('deposited_by', $user->id)->get();
+//        $deposits = DB::table('monthly_deposits')->where('deposited_by', $user->id)->get();
+        $deposits = MonthlyDeposit::all()->where('deposited_by', $user->id);
 
         return view('admin.monthlyDeposits.index',compact('deposits'));
     }
@@ -84,9 +87,17 @@ class MonthlyDepositController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    public function show(MonthlyDeposit $depositDetail)
     public function show($id)
     {
+//        dd($deposit->id);
         $depositDetail = MonthlyDeposit::find($id);
+
+        $depositDetail->load('bank_account','depositedBy');
+//        dd($depositDetail->depositedBy->name);
+
+
+
         return view('admin.monthlyDeposits.show',compact('depositDetail'));
     }
 
@@ -96,9 +107,9 @@ class MonthlyDepositController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
-        //
+        dd($id);
     }
 
     /**

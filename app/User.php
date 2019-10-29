@@ -121,6 +121,20 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasOne('App\Profile');
     }
+    public function monthlyDeposits()
+    {
+        return $this->hasMany(MonthlyDeposit::class,'deposited_by','id');
+    }
+//    public function monthlyDeposit()
+//    {
+////        return $this->belongsTo(MonthlyDeposit::class,'deposited_by','id');
+//        return $this->hasOne(MonthlyDeposit::class,'deposited_by','id');
+//    }
+//    public function depositor()
+//    {
+//        return $this->hasOne('App\MonthlyDeposit','deposited_by','id');
+//    }
+
 
 //    public function user_status()
 //    {

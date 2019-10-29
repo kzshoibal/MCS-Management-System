@@ -6,7 +6,7 @@ use App\Traits\Auditable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 class BankAccount extends Model
 {
@@ -39,6 +39,17 @@ class BankAccount extends Model
         return $this->hasMany(Project::class, 'bank_account_id', 'id');
     }
 
+    public function monthlyDeposits()
+    {
+        return $this->hasMany(MonthlyDeposit::class,'bank_account_id','id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'bank_account_id', 'id');
+
+    }
+
     public function account_type()
     {
         return $this->belongsTo(AccountType::class, 'account_type_id');
@@ -59,9 +70,9 @@ class BankAccount extends Model
         $this->attributes['account_opening_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
 
-    public static function getBankAccountTitleFromId($id){
-        $accountTitle = DB::table('bank_accounts')->find('account_title')->where('id',$id)->get();
-//        $accountTitle = DB::table('bank_accounts')->where('id',$id)->get()->first();
-        return $accountTitle;
-    }
+//    public static function getBankAccountTitleFromId($id){
+//        $accountTitle = DB::table('bank_accounts')->find('account_title')->where('id',$id)->get();
+////        $accountTitle = DB::table('bank_accounts')->where('id',$id)->get()->first();
+//        return $accountTitle;
+//    }
 }

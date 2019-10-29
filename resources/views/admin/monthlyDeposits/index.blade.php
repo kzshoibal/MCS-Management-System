@@ -64,19 +64,19 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                    $id=1;
+                                    $increment=1;
                                 @endphp
 
-                                @foreach($deposits as $deposit)
+                                @foreach($deposits as $key =>$deposit)
                                     <tr data-entry-id="{{ $deposit->id }}">
                                         <td>
 
 
                                         </td>
                                         <td>
-                                            {{$id}}
+                                            {{$increment}}
                                             @php
-                                                $id++;
+                                                $increment++;
                                             @endphp
                                         </td>
                                         <td>
@@ -87,12 +87,11 @@
 
                                         </td>
                                         <td>
-                                            {{ $deposit->description}}
+                                            {{ $deposit->description ?? ''}}
                                         </td>
                                         <td>
-{{--                                            {{App\BankAccount::getBankAccountTitleFromId($deposit->bank_account_id)}}--}}
-                                            {{($deposit->bank_account_id)}}
-{{--                                            <img src="{{ asset($deposit->deposit_image) }}" width="120px" height="120px" alt="">--}}
+{{--                                            {{($deposit->bank_account_id ?? '')}}--}}
+                                            {{($deposit->bank_account->account_title ?? '')}}
 
                                         </td>
                                         <td>
@@ -102,8 +101,6 @@
                                             <span class="label label-warning label-many" >{{ "Pending" }}</span>
                                             @endif
                                         </td>
-
-
                                         <td>
                                             @can('enrole_monthly_deposit_access')
                                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.monthly-deposits.show', $deposit->id) }}">

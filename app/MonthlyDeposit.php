@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Traits\Auditable;
+use App\BankAccount;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,11 +33,21 @@ class MonthlyDeposit extends Model
         'transaction_type',
         'description',
         'is_approved',
-        'bank_account_id',
         'project_id',
         'approved_by',
         'deposited_by',
+        'bank_account_id',
     ];
+    public function bank_account()
+    {
+        return $this->belongsTo(BankAccount::class, 'bank_account_id');
+    }
+
+    public function depositedBy()
+    {
+        return $this->belongsTo('App\User', 'deposited_by');
+    }
+
 
     public function getDateAttribute($value)
     {

@@ -43,9 +43,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Changepasswords
     Route::resource('change-passwords', 'ChangePasswordController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
-//    Route::resource('change-passwords', 'ChangePasswordController');
-//    Route::get('change-passwords', 'ChangePasswordController@showChangePasswordForm');
-//    oute::post('change-passwords', 'ChangePasswordController@changePassword');
 
 //    Route::get('/change-password','ChangePasswordController@showChangePasswordForm');
     Route::post('/change-password','ChangePasswordController@changePassword')->name('change-password');
@@ -102,6 +99,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('notice/destroy', 'NoticeController@massDestroy')->name('notices.massDestroy');
 //    Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
     Route::resource('notice','NoticeController');
+
+    //Transaction
+    Route::resource('transaction','TransactionController');
+//    Route::get('transaction','TransactionController@index');
 
 
 

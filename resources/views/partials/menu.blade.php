@@ -152,6 +152,16 @@
                                 </a>
                             </li>
                         @endcan
+                            @can('enrole_monthly_deposit_access')
+                                <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.transaction.index") }}">
+                                        <i class="fa-fw far fa-credit-card">
+
+                                        </i>
+                                        <span>{{ "Transaction" }}</span>
+                                    </a>
+                                </li>
+                            @endcan
 {{--                            @can('enrole_project_deposit_access')--}}
 {{--                                <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">--}}
 {{--                                    <a href="{{ route("admin.enrole-monthly-deposits.index") }}">--}}

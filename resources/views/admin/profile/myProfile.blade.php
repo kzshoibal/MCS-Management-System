@@ -197,8 +197,6 @@
                             <h5 class="text-black mt-4">
                                 <strong>Edit Information</strong>
                             </h5><br>
-                            {{--                            {!! Form::open(array('url' => ['/update/'.$profileimage->user_id],'method'=>'POST', 'id'=>'form-validation', 'name'=>'form-validation', 'enctype'=>'multipart/form-data')) !!}--}}
-                            {{--                            {!! Form::open(array('url' => [],'method'=>'POST', 'id'=>'form-validation', 'name'=>'form-validation', 'enctype'=>'multipart/form-data')) !!}--}}
 
                             <form action="{{route("admin.profile.update", [$user->id])}}" method="POST", enctype="multipart/form-data">
                                 @csrf

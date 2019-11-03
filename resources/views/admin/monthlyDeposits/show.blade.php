@@ -6,7 +6,7 @@
         </h1>
         <ol class="breadcrumb">
             <li ><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route ("admin.enrole-monthly-deposits.index") }}">Deposit List</a></li>
+            <li><a href="{{ route ("admin.monthly-deposits.index") }}">Deposit List</a></li>
             <li class="active"><a href="#">Monthly Deposit Details</a></li>
         </ol>
     </section>
@@ -73,6 +73,7 @@
                                     </th>
                                     <td>
                                         {{$depositDetail->bank_account->account_title ?? ''}}
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,22 +87,37 @@
                                 </tr>
                                 <tr>
                                     <th>
+
                                         {{"Approval Status"}}
                                     </th>
                                     <td>
-                                        @if($depositDetail->is_approved)
+{{--                                        approved request--}}
+                                        @if($depositDetail->is_approved == 1)
                                             <span class="label label-success label-many">{{ "Approved" }}</span>
+{{--                                            Pending Request--}}
                                         @elseif($depositDetail->is_approved == 0)
                                             <span class="label label-warning label-many" >{{ "Pending" }}</span>
+{{--                                            Rejected Request--}}
+                                        @elseif($depositDetail->is_approved == 2)
+                                            <span class="label label-danger label-many" >{{ "Rejected" }}</span>
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{"Approved By"}}
+                                        @if($depositDetail->is_approved == 1)
+                                            {{"Approved By"}}
+                                        @elseif($depositDetail->is_approved == 2)
+                                            {{"Rejected By"}}
+
+                                        @endif
                                     </th>
                                     <td>
-                                        {{$depositDetail->approved_by ?? ''}}
+                                        @if(isset($approvedUser))
+                                        <a href="{{ route('admin.profile.show', $approvedUser->id) }}" target="_blank">
+                                            {{$approvedUser->name ?? ''}}
+                                        </a>
+                                            @endif
 
                                     </td>
                                 </tr>

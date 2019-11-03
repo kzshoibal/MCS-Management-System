@@ -15,9 +15,9 @@
         @can('project_create')
             <div style="margin-bottom: 10px;" class="row">
                 <div class="col-lg-12">
-                    <a class="btn btn-success" href="{{ route("admin.monthly-deposits.create") }}">
-                        {{ trans('global.add') }} {{ trans('cruds.monthlyDeposit.title_singular') }}
-                    </a>
+{{--                    <a class="btn btn-success" href="{{ route("admin.monthly-deposits.create") }}">--}}
+{{--                        {{ trans('global.add') }} {{ trans('cruds.monthlyDeposit.title_singular') }}--}}
+{{--                    </a>--}}
                 </div>
             </div>
         @endcan
@@ -39,6 +39,10 @@
                                     </th>
                                     <th>
                                         {{ trans('cruds.project.fields.id') }}
+                                    </th>
+
+                                    <th>
+                                        {{ "Deposited By" }}
                                     </th>
 
                                     <th>
@@ -70,14 +74,19 @@
                                 @foreach($deposits as $key =>$deposit)
                                     <tr data-entry-id="{{ $deposit->id }}">
                                         <td>
-
-
                                         </td>
                                         <td>
                                             {{$increment}}
                                             @php
                                                 $increment++;
                                             @endphp
+                                        </td>
+                                        <td>
+                                            @if($deposit->deposited_by)
+                                                <a href="{{ route('admin.profile.show', $deposit->depositedBy->id) }}" target="_blank">
+                                                    {{$deposit->depositedBy->name ?? ''}}
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
                                             {{ $deposit->date ?? '' }}
@@ -90,7 +99,7 @@
                                             {{ $deposit->description ?? ''}}
                                         </td>
                                         <td>
-{{--                                            {{($deposit->bank_account_id ?? '')}}--}}
+                                            {{--                                            {{($deposit->bank_account_id ?? '')}}--}}
                                             {{($deposit->bank_account->account_title ?? '')}}
 
                                         </td>
@@ -100,7 +109,7 @@
                                             @elseif($deposit->is_approved == 0)
                                                 <span class="label label-warning label-many" >{{ "Pending" }}</span>
                                             @elseif($deposit->is_approved == 2)
-                                                <span class="label label-danger label-many" >{{ "Rejected" }}</span>
+                                                <span class="label label-danger" >{{ "Rejected" }}</span>
                                             @endif
                                         </td>
                                         <td>
@@ -111,20 +120,20 @@
                                             @endcan
 
                                             @can('enrole_monthly_deposit_access')
-                                                    @if(!$deposit->is_approved == 1 ||  !$deposit->is_approved == 2)
-                                                        <a class="btn btn-xs btn-info" href="{{ route('admin.monthly-deposits.edit', $deposit->id) }}">
-                                                            {{ trans('global.edit') }}
-                                                        </a>
-                                                        @endif
+                                                @if(!$deposit->is_approved)
+                                                    <a class="btn btn-xs btn-info" href="{{ route('admin.monthly-deposits.editFromAllList', $deposit->id) }}">
+                                                        {{ trans('global.edit') }}
+                                                    </a>
+                                                @endif
                                             @endcan
 
                                             @can('enrole_monthly_deposit_access')
-                                                @if(!$deposit->is_approved == 1 ||  !$deposit->is_approved == 2)
-                                                        <form action="{{ route('admin.monthly-deposits.destroy', $deposit->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                        </form>
+                                                @if(!$deposit->is_approved)
+                                                    <form action="{{ route('admin.monthly-deposits.destroy', $deposit->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                                    </form>
                                                 @endif
                                             @endcan
 

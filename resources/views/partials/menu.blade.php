@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-    <section class="sidebar" style="height: auto; ">
+    <section class="sidebar" style="height: auto; width: auto;">
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
@@ -143,8 +143,8 @@
                     </a>
                     <ul class="treeview-menu">
                         @can('enrole_monthly_deposit_access')
-                            <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">
-                                <a href="{{ route("admin.enrole-monthly-deposits.index") }}">
+                            <li class="{{ request()->is('admin/monthly-deposits') || request()->is('admin/monthly-deposits/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.monthly-deposits.index") }}">
                                     <i class="fa-fw far fa-credit-card">
 
                                     </i>
@@ -152,36 +152,111 @@
                                 </a>
                             </li>
                         @endcan
-                            @can('enrole_monthly_deposit_access')
-                                <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">
-                                    <a href="{{ route("admin.transaction.index") }}">
+                        @can('project_contributions_access')
+                                <li class="{{ request()->is('admin/project-contributions') || request()->is('admin/project-contributions/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.project-contributions.index") }}">
                                         <i class="fa-fw far fa-credit-card">
 
                                         </i>
-                                        <span>{{ "Transaction" }}</span>
+                                        <span>{{ 'Project Contributions' }}</span>
                                     </a>
                                 </li>
                             @endcan
-{{--                            @can('enrole_project_deposit_access')--}}
-{{--                                <li class="{{ request()->is('admin/enrole-monthly-deposits') || request()->is('admin/enrole-monthly-deposits/*') ? 'active' : '' }}">--}}
-{{--                                    <a href="{{ route("admin.enrole-monthly-deposits.index") }}">--}}
-{{--                                        <i class="fa-fw far fa-credit-card">--}}
+{{--                        @can('contribution_history_access')--}}
+{{--                            <li class="{{ request()->is('admin/contribution-histories') || request()->is('admin/contribution-histories/*') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ route("admin.contribution-histories.index") }}">--}}
+{{--                                    <i class="fa-fw fas fa-money-bill">--}}
 
-{{--                                        </i>--}}
-{{--                                        <span>{{ trans('cruds.monthlyDeposit.title') }}</span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-                        @can('contribution_history_access')
-                            <li class="{{ request()->is('admin/contribution-histories') || request()->is('admin/contribution-histories/*') ? 'active' : '' }}">
-                                <a href="{{ route("admin.contribution-histories.index") }}">
-                                    <i class="fa-fw fas fa-money-bill">
+{{--                                    </i>--}}
+{{--                                    <span>{{ trans('cruds.contributionHistory.title') }}</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endcan--}}
+                    </ul>
+                </li>
+            @endcan
+            @can('financial_manangement_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-money-check">
+
+                        </i>
+                        <span>{{ trans('Financial Management ') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('financial_manangement_access')
+                            <li class="{{ request()->is('admin/enrole-monthly-deposits/all-pending') || request()->is('admin/enrole-monthly-deposits/all-pending/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.monthly-deposits.listpending") }}">
+                                    <i class="fa-fw far fa-credit-card">
 
                                     </i>
-                                    <span>{{ trans('cruds.contributionHistory.title') }}</span>
+                                    <span>{{ 'Monthly Deposit Pending Request' }}</span>
                                 </a>
                             </li>
                         @endcan
+                        @can('financial_manangement_access')
+                            <li class="{{ request()->is('admin/enrole-monthly-deposits/all-approved') || request()->is('admin/enrole-monthly-deposits/all-pending/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.monthly-deposits.listapproved") }}">
+                                    <i class="fa-fw far fa-credit-card">
+
+                                    </i>
+                                    <span>{{ "Monthly Deposit Approved Request" }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                            @can('financial_manangement_access')
+                                <li class="{{ request()->is('admin/enrole-monthly-deposits/all-rejected') || request()->is('admin/enrole-monthly-deposits/all-rejected/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.monthly-deposits.listrejected") }}">
+                                        <i class="fa-fw far fa-credit-card">
+
+                                        </i>
+                                        <span>{{ "Monthly Deposit Rejected Request" }}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('financial_manangement_access')
+                                <li class="{{ request()->is('admin/enrole-monthly-deposits/all') || request()->is('admin/enrole-monthly-deposits/all/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.monthly-deposits.listall") }}">
+                                        <i class="fa-fw far fa-credit-card">
+
+                                        </i>
+                                        <span>{{ "All Monthly Deposit List" }}</span>
+                                    </a>
+                                </li>
+                            @endcan
+
+
+                        @can('financial_manangement_access')
+                                <li class="{{ request()->is('admin/monthly-deposits') || request()->is('admin/monthly-deposits/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.monthly-deposits.index") }}">
+                                        <i class="fa-fw far fa-credit-card">
+
+                                        </i>
+                                        <span>{{ 'Project Deposit Pending Request' }}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @can('financial_manangement_access')
+                                <li class="{{ request()->is('admin/monthly-deposits') || request()->is('admin/monthly-deposits/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.monthly-deposits.listall") }}">
+                                        <i class="fa-fw far fa-credit-card">
+
+                                        </i>
+                                        <span>{{ "Project Deposit Approved Request" }}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @can('financial_manangement_access')
+                                <li class="{{ request()->is('admin/contribution-histories') || request()->is('admin/contribution-histories/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.contribution-histories.index") }}">
+                                        <i class="fa-fw fas fa-money-bill">
+
+                                        </i>
+                                        <span>{{ 'All Project Deposit List' }}</span>
+                                    </a>
+                                </li>
+                            @endcan
                     </ul>
                 </li>
             @endcan

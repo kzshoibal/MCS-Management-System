@@ -2,12 +2,12 @@
 @section('content-wrapper-header')
     <section class="content-header">
         <h1>
-            Add Monthly Deposit
+            Edit Monthly Deposit
         </h1>
         <ol class="breadcrumb">
             <li ><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ route ("admin.monthly-deposits.index") }}">Deposit List</a></li>
-            <li class="active"><a href="#">Add Monthly Deposit</a></li>
+            <li><a href="{{ route ("admin.monthly-deposits.listall") }}">Deposit List</a></li>
+            <li class="active"><a href="#">Edit Monthly Deposit</a></li>
         </ol>
     </section>
 @endsection
@@ -16,21 +16,24 @@
     <div class="content">
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-7">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading with-border">
                         {{ "Deposit Information" }}
                     </div>
                     <div class="panel-body">
 
-                        <form action="{{ route("admin.monthly-deposits.store") }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route("admin.monthly-deposits.updateFromAllList", [$deposits->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-{{--                            Deposit Image--}}
+                            @method('PUT')
+                            {{--  Deposit Image--}}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group"><br>
                                         <label class="form-control-label" for="l6"><b>Monthly Deposit Slip Image</b></label>
+                                        {{--                                        <img src="{{ asset($deposits->deposit_image) }}" width="60px" height="60px">&nbsp;--}}
+                                        <input type="hidden" name="deposit_image" value="{{ $deposits->deposit_image }}">
                                         <input type="file" class="form-control" name="deposit_image" id="deposit_image">
                                     </div>
                                 </div>
@@ -51,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            Deposit Amount and Date--}}
+                            {{--                            Deposit Amount and Date--}}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group {{ $errors->has('amount') ? 'has-error' : '' }}">
@@ -90,12 +93,12 @@
                                     {{ trans('cruds.project.fields.description_helper') }}
                                 </p>
                             </div>
-{{--                            Hidden content--}}
-{{--                            Deposited by (user_id)--}}
-                            <input id="deposited_by" name="deposited_by" type="hidden" value={{$user->id}}>
+                            {{--                            Hidden content--}}
+                            {{--                            Deposited by (user_id)--}}
+                            {{--                            <input id="deposited_by" name="deposited_by" type="hidden" value={{$user->id}}>--}}
 
                             <div>
-                                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                                <input class="btn btn-danger" type="submit" value="{{ trans('global.update') }}">
                             </div>
                         </form>
 
@@ -103,6 +106,30 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="col-lg-5">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Deposit Slip Image</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        @if($deposits->deposit_image)
+                            <a href="{{ asset($deposits->deposit_image) }}" target="_blank">
+                                <img src="{{ asset($deposits->deposit_image)}}" width="500px" height="500px">
+                            </a>
+                        @endif
+                        <hr>
+
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+                        <p class="text-muted">
+                            {{ $deposits->description }}
+                        </p>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
             </div>
         </div>
     </div>

@@ -120,8 +120,8 @@ return [
         'title_singular' => 'Financial Contribution',
     ],
     'monthlyDeposit'     => [
-        'title'          => 'Monthly Deposit',
-        'title_singular' => 'Monthly Deposit',
+        'title'          => 'Monthly Deposits',
+        'title_singular' => 'Monthly Deposits',
     ],
 
     'projectDeposit'     => [

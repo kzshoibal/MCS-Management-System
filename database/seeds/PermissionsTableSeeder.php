@@ -148,7 +148,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'         => '24',
-                'title'      => 'enrole_monthly_deposit_access',
+                'title'      => 'monthly_deposit_access',
                 'created_at' => '2019-10-03 05:40:34',
                 'updated_at' => '2019-10-03 05:40:34',
             ],
@@ -539,6 +539,18 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'         => '91',
                 'title'      => 'update_user_status',
+                'created_at' => '2019-10-03 05:40:34',
+                'updated_at' => '2019-10-03 05:40:34',
+            ],
+            [
+                'id'         => '92',
+                'title'      => 'financial_manangement_access',
+                'created_at' => '2019-10-03 05:40:34',
+                'updated_at' => '2019-10-03 05:40:34',
+            ],
+            [
+                'id'         => '93',
+                'title'      => 'project_contributions_access',
                 'created_at' => '2019-10-03 05:40:34',
                 'updated_at' => '2019-10-03 05:40:34',
             ],

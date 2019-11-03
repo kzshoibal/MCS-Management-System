@@ -102,7 +102,7 @@ class NoticeController extends Controller
     {
 //        dd($request->all());
         $notice->update($request->all());
-        return redirect()->route('admin.notice.index');
+        return redirect()->route('admin.notice.index')->with('success', 'Notice updated successfully !');
 
     }
 
@@ -118,7 +118,7 @@ class NoticeController extends Controller
 
         $notice->delete();
 
-        return back();
+        return back()->with('success', 'Notice deleted successfully.');
     }
 
     public function massDestroy(MassDestroyNoticeRequest $request)

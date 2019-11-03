@@ -118,8 +118,6 @@ class ProfileController extends Controller
             $file = basename($oldImagePath);         // $file is set to "index.php"
             $filePath = '/upload/profileImage/'.$file;
 
-
-//            unlink(public_path('/upload/profileImage/'.$file));
             if(is_file(public_path('/upload/profileImage/'.$file))){
                 unlink(public_path('/upload/profileImage/'.$file));
             }
@@ -134,10 +132,6 @@ class ProfileController extends Controller
             Image::make($image)->resize(128,128)->save(public_path('/upload/profileImage/'.$filename));
             $user->profile->profile_image = asset('/upload/profileImage/'.$filename);
         }
-//        elseif ($user->profile->profile_image) {
-//            $user->profile->profile_image->delete();
-//        }
-
 
         $user->save();
         $user->profile->save();

@@ -124,7 +124,8 @@
                                 </tbody>
                             </table>
 {{--                            if the approval status is pending then this button will appeared.--}}
-                            @if($depositDetail->is_approved == 0)
+
+                            @if($depositDetail->is_approved == 0) {{-- Status for pending --}}
                                 <div class="text-center">
                                     <a class="btn btn-success" href="{{ route('admin.monthly-deposits.approve', $depositDetail->id) }}">
                                         {{ 'Approve' }}

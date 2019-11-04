@@ -3,6 +3,7 @@
 Route::redirect('/', '/login');
 Route::redirect('/home', '/admin');
 Auth::routes(['register' => false]);
+//require_once app_path() . '\config/Constants.php';
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -49,8 +50,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 
     // Enrolemonthlydeposits
-    Route::resource('enrole-monthly-deposits', 'MonthlyDepositController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('monthly-deposits', 'MonthlyDepositController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
     Route::resource('monthly-deposits', 'MonthlyDepositController');
+    Route::get('enrole-monthly-deposits/all','MonthlyDepositController@getAllMonthlyDepositList')->name('monthly-deposits.listall');
+    Route::get('enrole-monthly-deposits/all-pending','MonthlyDepositController@getAllPendingMonthlyDepsitList')->name('monthly-deposits.listpending');
+    Route::get('enrole-monthly-deposits/all-approved','MonthlyDepositController@getAllApprovedMonthlyDepositList')->name('monthly-deposits.listapproved');
+    Route::get('enrole-monthly-deposits/all-rejected','MonthlyDepositController@getAllRejectedMonthlyDepositList')->name('monthly-deposits.listrejected');
+    Route::get('enrole-monthly-deposits/{id}/edit-from-all','MonthlyDepositController@editFromAllList')->name('monthly-deposits.editFromAllList');
+    Route::match(['put', 'patch'], 'enrole-monthly-deposits/edit-from-all/{id}','MonthlyDepositController@updateFromAllList')->name('monthly-deposits.updateFromAllList');
+    Route::get('enrole-monthly-deposits/{id}/approve','MonthlyDepositController@approveMonthlyDepositRequest')->name('monthly-deposits.approve');
+    Route::get('enrole-monthly-deposits/{id}/reject','MonthlyDepositController@rejectMonthlyDepositRequest')->name('monthly-deposits.reject');
+
+    // Deposit on Projects
+    Route::resource('project-contributions', 'ProjectDepositController');
+    Route::get('project-contributions/all','ProjectDepositController@getAllProjectDepositList')->name('project-contributions.listall');
+    Route::get('project-contributions/all-pending','ProjectDepositController@getAllPendingProjectDepsitList')->name('project-contributions.listpending');
+    Route::get('project-contributions/all-approved','ProjectDepositController@getAllApprovedProjectDepositList')->name('project-contributions.listapproved');
+    Route::get('project-contributions/all-rejected','ProjectDepositController@getAllRejectedProjectDepositList')->name('project-contributions.listrejected');
 
     // Contributionhistories
     Route::resource('contribution-histories', 'ContributionHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -117,4 +133,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 
 
+
 });
+
+

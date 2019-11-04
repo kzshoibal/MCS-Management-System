@@ -123,10 +123,33 @@
                                 </tr>
                                 </tbody>
                             </table>
+{{--                            if the approval status is pending then this button will appeared.--}}
+                            @if($depositDetail->is_approved == 0)
+                                <div class="text-center">
+                                    <a class="btn btn-success" href="{{ route('admin.monthly-deposits.approve', $depositDetail->id) }}">
+                                        {{ 'Approve' }}
+                                    </a>
+                                    <a class="btn btn-danger" href="{{ route('admin.monthly-deposits.reject', $depositDetail->id) }}">
+                                        {{ 'Reject' }}
+                                    </a>
+                                </div>
+                                @endif
+
+
                             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
+{{--                            <a style="margin-top:20px;" class="btn btn-default justify-content-center" href="{{ url()->previous() }}">--}}
+{{--                                {{ trans('global.back_to_list') }}--}}
+{{--                            </a>--}}
+{{--                            <div class="wrapper">--}}
+{{--                                <button class="button">Button</button>--}}
+{{--                            </div>--}}
+
                         </div>
+{{--                        <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">--}}
+{{--                            {{ trans('global.back_to_list') }}--}}
+{{--                        </a>--}}
 
                         <ul class="nav nav-tabs">
 

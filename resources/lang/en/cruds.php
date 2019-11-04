@@ -243,8 +243,8 @@ return [
         ],
     ],
     'accounsManagement'        => [
-        'title'          => 'Accouns Management',
-        'title_singular' => 'Accouns Management',
+        'title'          => 'Bank Accounts Management',
+        'title_singular' => 'Bank Accounts Management',
     ],
     'bankAccount'              => [
         'title'          => 'Bank Accounts',

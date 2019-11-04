@@ -113,7 +113,7 @@
 
                                             @can('enrole_monthly_deposit_access')
                                                 @if(!$deposit->is_approved)
-                                                    <a class="btn btn-xs btn-info" href="{{ route('admin.monthly-deposits.approve', $deposit->id) }}">
+                                                    <a class="btn btn-xs btn-success" href="{{ route('admin.monthly-deposits.approve', $deposit->id) }}">
                                                         {{ 'Approve' }}
                                                     </a>
                                                 @endif

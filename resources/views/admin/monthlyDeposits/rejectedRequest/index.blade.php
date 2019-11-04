@@ -2,11 +2,11 @@
 @section('content-wrapper-header')
     <section class="content-header">
         <h1>
-            Monthly Deposit Pending Request
+            Monthly Deposit Rejected Request
         </h1>
         <ol class="breadcrumb">
             <li ><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active"><a href="#">Pending Request List</a></li>
+            <li class="active"><a href="#">Rejected Request List</a></li>
         </ol>
     </section>
 @endsection
@@ -18,7 +18,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{ 'Pending Request List' }}
+                        {{ 'Rejected Request List' }}
                     </div>
                     <div class="panel-body">
 

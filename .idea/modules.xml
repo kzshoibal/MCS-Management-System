@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Employee Management System/.idea/Employee Management System.iml" filepath="$PROJECT_DIR$/../Employee Management System/.idea/Employee Management System.iml" />
+      <module fileurl="file://C:/laragon/Valet/cms/.idea/cms.iml" filepath="C:/laragon/Valet/cms/.idea/cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../laravel-responsive-admin/.idea/laravel-responsive-admin-template-master.iml" filepath="$PROJECT_DIR$/../laravel-responsive-admin/.idea/laravel-responsive-admin-template-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mammaskitchen/.idea/mammaskitchen.iml" filepath="$PROJECT_DIR$/../mammaskitchen/.idea/mammaskitchen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/multipurpose-cooperative-society.iml" filepath="$PROJECT_DIR$/.idea/multipurpose-cooperative-society.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ninja/.idea/ninja.iml" filepath="$PROJECT_DIR$/../ninja/.idea/ninja.iml" />
+    </modules>
+  </component>
+</project>

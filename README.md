@@ -1,7 +1,7 @@
 # MCS-Management-System
 MCS(Multi-Purpose Cooperative Society) Management System is an e-finance website which provides financial services through over the Internet, or any network, public or private.
 Features:
-1. Dynamic User role management
+1. Dynamic user role management
 2. Financial contribution management. a) Regular Deposit, b) Deposit on Project
 3. Project Management
 4. Bank account management
